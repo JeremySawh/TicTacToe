@@ -1,7 +1,6 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
 /**
  * The listener for the button in the TicTacToe GUI
  * 
@@ -11,23 +10,21 @@ import java.awt.event.ActionListener;
  */
 
 public class ResetButtonListener implements ActionListener {
-	private TicTacToeModel model;
+	private TicTacToeModel mModel;
 
-	
 	/**
 	 * Constructor for objects of class ResetButtonListener
+	 * 
 	 * @param panel
 	 * @param model
 	 */
-	public ResetButtonListener(TicTacToeModel model)
-	{
-		/*Initialize Instance Variables*/
-		this.model = model;
+	public ResetButtonListener(TicTacToeModel model) {
+		/* Initialize Instance Variables */
+		this.mModel = model;
 
 	}
-	
-	public void actionPerformed(ActionEvent event)
-	{
-		model.reset();
+
+	public void actionPerformed(ActionEvent event) {
+		mModel.reset();
 	}
 }
