@@ -22,10 +22,11 @@ public class TicTacToePanel extends JPanel {
 	public TicTacToePanel(GamePanel panel) {
 		TicTacToeModel model = new TicTacToeModel();
 		ButtonListener listener = new ButtonListener(model, panel);
-
+		
 		/* Create 3-by-3 grid */
 		setLayout(new GridLayout(3, 3));
 
+		
 		/* Create nine buttons for the grid */
 		for (int i = 0; i < 3; i += 1) {
 			for (int j = 0; j < 3; j += 1) {

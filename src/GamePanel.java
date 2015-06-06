@@ -25,8 +25,10 @@ public class GamePanel extends JPanel {
 
 		mPlayer = new JLabel("Click any square to start the game!");
 		mPanel = new TicTacToePanel(this);
-		
-		// Suggestion: Wouldn't it look a little better if the reset button were at the bottom of the screen with some padding and were a little smaller?
+
+		// Suggestion: Wouldn't it look a little better if the reset button were
+		// at the bottom of the screen with some padding and were a little
+		// smaller?
 		add(mPanel, BorderLayout.SOUTH);
 		add(mPlayer, BorderLayout.NORTH);
 		add(mReset, BorderLayout.CENTER);
@@ -41,10 +43,30 @@ public class GamePanel extends JPanel {
 		String s = "Player " + player + " Turn";
 		mPlayer.setText(s);
 	}
-	
+
 	public void endGame(char decision) {
-		if (decision == 'D') { mPlayer.setText("It was a Draw!"); }
-		else { mPlayer.setText("Player " + decision + " won!"); }
+		if (decision == 'D') {
+			mPlayer.setText("It was a Draw!");
+		} else {
+			mPlayer.setText("Player " + decision + " won!");
+		}
+		
+		// This thread will wait for three seconds before it exits the program after a player wins or there is a draw
+		Thread finish = new Thread() {
+			public void run() {
+				try {
+					Thread.sleep(3000);
+					System.exit(0);
+				}
+				catch (InterruptedException e) {
+					System.out.println("InterruptedException in GamePanel.endGame(): " + e.getMessage());
+				}
+			}
+		};
+		
+		// Starts the thread!
+		finish.start();
+		
 	}
-	
+
 }
