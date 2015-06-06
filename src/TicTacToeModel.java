@@ -10,6 +10,8 @@ public class TicTacToeModel {
 	private char[][] mSquares;
 	private static char EMPTY = ' ';
 	private int mTurnsTaken;
+	private final int[][] mMagicSquare = { { 8, 1, 6 }, { 3, 5, 7 },
+			{ 4, 9, 2 } };
 
 	/**
 	 * Initializes a new game of Tic Tac Toe. The first person to make move will
@@ -53,19 +55,41 @@ public class TicTacToeModel {
 	 *         ended in a draw, 'I' if the game is in progress (not yet over).
 	 */
 	public char getGameState() {
-		
-		// Start checking after 5 turns because the first player would have then made atleast 3 moves!
+
+		int xSum = 0;
+		int oSum = 0;
+
+		// Start checking after 5 turns because the first player would have then
+		// made atleast 3 moves!
 		// No point in checking before hand
-		if (mTurnsTaken == 5) {
-			// TODO: Replace I after with a check to see who the actual winner is!
-			return 'I';
-		}
-		else if (mTurnsTaken == 9) {
+		if (mTurnsTaken >= 5) {
+			// TODO: Check to see if can be optimized!
+			//			Currently is an O(n^2) operation
+			
+			// The way the winner is determined is by using the magic square.
+			//	Refer to : mathworld.wolfram.com/MagicSquare.html
+			for (int row = 0; row < mSquares.length; row += 1) {
+				for (int col = 0; col < mSquares[row].length; col += 1) {
+
+					if (mSquares[row][col] == 'X') {
+						xSum += mMagicSquare[row][col];
+					} else if (mSquares[row][col] == 'O') {
+						oSum += mMagicSquare[row][col];
+					}
+				}
+			}
+
+			if (xSum == 15) {
+				return 'X';
+			} else if (oSum == 15) {
+				return 'O';
+			}
+		} else if (mTurnsTaken == 9) {
 			return 'D';
 		}
-		else {
-			return 'I';
-		}
+
+		return 'I';
+
 	}
 
 	/**
@@ -94,6 +118,6 @@ public class TicTacToeModel {
 
 	public void reset() {
 		// TODO: Reset the whole game here!
-		
+
 	}
 }
