@@ -1,4 +1,5 @@
 import java.awt.*;
+
 import javax.swing.*;
 
 /**
@@ -9,9 +10,9 @@ import javax.swing.*;
  * 
  */
 
+@SuppressWarnings("serial")
 public class GamePanel extends JPanel {
 
-	private static final long SERIAL_VERSION_UID = 1L;
 	private JLabel mPlayer;
 	private TicTacToePanel mPanel;
 	private TicTacToeModel mModel;
@@ -26,12 +27,10 @@ public class GamePanel extends JPanel {
 		mPlayer = new JLabel("Click any square to start the game!");
 		mPanel = new TicTacToePanel(this);
 
-		// Suggestion: Wouldn't it look a little better if the reset button were
-		// at the bottom of the screen with some padding and were a little
-		// smaller?
-		add(mPanel, BorderLayout.SOUTH);
+
+		add(mPanel, BorderLayout.CENTER);
 		add(mPlayer, BorderLayout.NORTH);
-		add(mReset, BorderLayout.CENTER);
+		add(mReset, BorderLayout.SOUTH);
 
 		mModel = new TicTacToeModel();
 

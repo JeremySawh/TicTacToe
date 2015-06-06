@@ -1,4 +1,5 @@
 import java.awt.*;
+
 import javax.swing.*;
 
 /**
@@ -9,9 +10,9 @@ import javax.swing.*;
  * @version 2015-06-14
  *
  */
+@SuppressWarnings("serial")
 public class TicTacToePanel extends JPanel {
 
-	private static final long SERIAL_VERSION_UID = 1L;
 
 	/**
 	 * Sets up the Games User Interface
@@ -22,7 +23,7 @@ public class TicTacToePanel extends JPanel {
 	public TicTacToePanel(GamePanel panel) {
 		TicTacToeModel model = new TicTacToeModel();
 		ButtonListener listener = new ButtonListener(model, panel);
-		
+		Font font = new Font("Arial",Font.BOLD, 42);
 		/* Create 3-by-3 grid */
 		setLayout(new GridLayout(3, 3));
 
@@ -31,6 +32,7 @@ public class TicTacToePanel extends JPanel {
 		for (int i = 0; i < 3; i += 1) {
 			for (int j = 0; j < 3; j += 1) {
 				JButton b = new JButton(" ");
+				b.setFont(font);
 				b.addActionListener(listener);
 				b.setActionCommand("" + i + j);
 
@@ -41,7 +43,7 @@ public class TicTacToePanel extends JPanel {
 		}
 		
 		// Made the board size bigger
-		setPreferredSize(new Dimension(400, 400));
+		setPreferredSize(new Dimension(250, 350));
 
 	}
 

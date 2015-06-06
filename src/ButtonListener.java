@@ -1,4 +1,7 @@
+import java.awt.Color;
 import java.awt.event.*;
+import java.awt.Graphics;
+
 import javax.swing.*;
 
 /*
@@ -36,7 +39,10 @@ public class ButtonListener implements ActionListener {
 		mModel.markSquare(row, col);
 
 		/* Mark an "X" or and "O" where button is */
-		button.setText("" + mModel.getPlayer());
+			button.setText("" + mModel.getPlayer());
+
+
+		
 		/* Disable button after it was clicked */
 		button.setEnabled(false);
 		
